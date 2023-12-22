@@ -13,6 +13,13 @@ var TalkerNotFound = errors.New("Talker Not Found")
 
 var talkers []models.Talker = []models.Talker{}
 
+type Crud interface {
+	GetTalkers() []models.Talker
+	GetTalkerById(id int) (models.Talker, error)
+	CreateTalker(data string, talkerData *models.Talker)
+	DeleteTalker(id int) bool
+}
+
 type crud struct {
 	ioOperator *talkerutils.IoUtils
 }
